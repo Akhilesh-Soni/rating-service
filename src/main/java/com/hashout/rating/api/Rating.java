@@ -1,15 +1,17 @@
 package com.hashout.rating.api;
 
-import com.hashout.rating.api.dtos.*;
-import com.hashout.rating.api.util.Data;
+import com.hashout.rating.api.dtos.AllShowsDto;
+import com.hashout.rating.api.dtos.MovieRatingDto;
+import com.hashout.rating.api.dtos.TvShowRatingDto;
+import com.hashout.rating.api.dtos.UpdateRatingDto;
+import org.eclipse.jetty.http.HttpStatus;
 
 import javax.annotation.Nonnull;
 import javax.validation.Valid;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import java.util.ArrayList;
-import java.util.Map;
+import java.util.InvalidPropertiesFormatException;
 
 /**
  * It is the rest resource exposed to external client.
@@ -20,58 +22,116 @@ import java.util.Map;
 @Consumes(MediaType.APPLICATION_JSON)
 public class Rating {
 
-    private final Map<String, TvShowRatingDto> tvShows;
-    private final Map<String, MovieRatingDto> movies;
+    private final RatingRequestHandler ratingRequestHandler;
 
-    public Rating() {
-        tvShows = Data.intializeDataForTvShow();
-        movies = Data.intializeDataForMovies();
+    public Rating(final RatingRequestHandler ratingRequestHandler) {
+        this.ratingRequestHandler = ratingRequestHandler;
     }
+
+    /**
+     * Entry point to update the rating of show.
+     * It will validate the request body {@link UpdateRatingDto}
+     * <br>
+     * Example of JSON payload:
+     * <p>
+     * {<br>
+     * "showName":"Bigg Boss",<br>
+     * "showType":"TV_SHOW",<br>
+     * "rating":"5"<br>
+     * }
+     *
+     * @return {@link Response} <br>
+     * 204 if successful<br>
+     * 422 if {@link UpdateRatingDto} validation failed
+     **/
+
 
     @POST
     @Path("/update-rating")
     public Response updateRating(@Valid UpdateRatingDto updateRatingDto) {
-        if (updateRatingDto.getShowType().equals(ShowType.MOVIE)) {
-            if (movies.containsKey(updateRatingDto.getShowName())) {
-                MovieRatingDto movieRatingDto = movies.get(updateRatingDto.getShowName());
-                movieRatingDto.updateTotalCount();
-                movieRatingDto.updateAverageRating(updateRatingDto.getRating());
-            }
-        } else {
-            if (tvShows.containsKey(updateRatingDto.getShowName())) {
-                TvShowRatingDto tvShowRatingDto = tvShows.get(updateRatingDto.getShowName());
-                tvShowRatingDto.updateTotalCount();
-                tvShowRatingDto.updateAverageRating(updateRatingDto.getRating());
-            }
+        try {
+            ratingRequestHandler.handleUpdateRequest(updateRatingDto);
+        } catch (final InvalidPropertiesFormatException | NumberFormatException e) {
+            return Response.status(HttpStatus.UNPROCESSABLE_ENTITY_422).entity(e.getLocalizedMessage()).build();
         }
         return Response.status(Response.Status.NO_CONTENT).build();
     }
 
+
+    /**
+     * Entry point to get the rating of show.
+     * It will return the response body {@link TvShowRatingDto} or {@link MovieRatingDto}
+     * <br>
+     * Example of JSON payload:
+     * <p>
+     * {<br>
+     * "name": "Bigg Boss", <br>
+     * "language": "Hindi", <br>
+     * "genre": "Reality Show", <br>
+     * "type": "TV_SHOW", <br>
+     * "averageRating": 4, <br>
+     * "totalVotes": 100000, <br>
+     * "channel": "Colors", <br>
+     * "host": "Salman Khan" <br>
+     * }
+     *
+     * @return {@link Response} <br>
+     * 200 if successful.<br>
+     * 404 if show-name not found.<br>
+     **/
     @GET
     @Path("/show-name/{show_name}")
-    public Response getAverageRating(@PathParam("show_name") @Nonnull final String showName) {
-
-        if (movies.containsKey(showName)) {
-            return Response.status(Response.Status.OK).entity(movies.get(showName)).build();
-        } else if (tvShows.containsKey(showName)) {
-            return Response.status(Response.Status.OK).entity(tvShows.get(showName)).build();
+    public Response getRatingOfShow(@PathParam("show_name") @Nonnull final String showName) {
+        try {
+            return ratingRequestHandler.findRatingsOfShow(showName);
+        } catch (final NotFoundException e) {
+            return Response.status(Response.Status.NOT_FOUND).build();
         }
 
-        return Response.status(Response.Status.NOT_FOUND).build();
     }
 
+
+    /**
+     * Entry point to get the rating of all shows.
+     * It will return the response body {@link AllShowsDto}
+     * <br>
+     * Example of JSON payload:
+     * <p>
+     * {<br>
+     * "movies": [
+     * {
+     * "name": "Start Wars",
+     * "language": "English",
+     * "genre": "Action, Adventure",
+     * "type": "MOVIE",
+     * "averageRating": 3.5,
+     * "totalVotes": 25356000,
+     * "cast": "Mark Hamil, Daisy Ridley",
+     * "screen": "Imax"
+     * }
+     * ],
+     * "tvShows": [
+     * {
+     * "name": "Bigg Boss",
+     * "language": "Hindi",
+     * "genre": "Reality Show",
+     * "type": "TV_SHOW",
+     * "averageRating": 4,
+     * "totalVotes": 100000,
+     * "channel": "Colors",
+     * "host": "Salman Khan"
+     * }
+     * ]
+     * }
+     *
+     * @return {@link Response} <br>
+     * 200 if successful.<br>
+     **/
     @GET
     @Path("/all-show-ratings")
-    public Response getAll() {
+    public Response getAllShowsRating() {
 
-        ArrayList<MovieRatingDto> moviesRatingDtos = new ArrayList<>();
-        moviesRatingDtos.addAll(movies.values());
-
-        ArrayList<TvShowRatingDto> tvShowRatingDtos = new ArrayList<>();
-        tvShowRatingDtos.addAll(tvShows.values());
-
-        AllShowsDto allShowsDto = new AllShowsDto(moviesRatingDtos, tvShowRatingDtos);
-
+        AllShowsDto allShowsDto = ratingRequestHandler.getAllShowsRatings();
         return Response.status(Response.Status.OK).entity(allShowsDto).build();
     }
 

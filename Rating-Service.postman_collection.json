@@ -1,0 +1,220 @@
+{
+	"id": "9cb47f95-b152-b6ff-0159-24310f1beaa9",
+	"name": "Rating-Service",
+	"description": "",
+	"order": [
+		"1071ae07-9a15-a538-85eb-4ad3a71e3082",
+		"f2bd57bd-2bca-9088-7dc5-6561645684de",
+		"d332ad66-e8b6-090d-b7f9-f515c68616cd",
+		"99743757-7a5c-f083-82a9-99ac373825ca",
+		"ebc369ed-b6b3-0efb-eb51-25bb48179095",
+		"d6637848-3fe0-c716-1550-2b7537299165"
+	],
+	"folders": [],
+	"folders_order": [],
+	"timestamp": 1514389697025,
+	"owner": "468829",
+	"public": false,
+	"events": [],
+	"variables": [],
+	"auth": null,
+	"requests": [
+		{
+			"id": "1071ae07-9a15-a538-85eb-4ad3a71e3082",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:8080/rating-service/all-show-ratings",
+			"queryParams": [],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"events": [],
+			"auth": null,
+			"method": "GET",
+			"collectionId": "9cb47f95-b152-b6ff-0159-24310f1beaa9",
+			"data": null,
+			"dataMode": "params",
+			"name": "Get All Shows Rating",
+			"description": "",
+			"descriptionFormat": "html",
+			"time": 1514389743843,
+			"version": 2,
+			"responses": [],
+			"currentHelper": null,
+			"helperAttributes": null
+		},
+		{
+			"id": "99743757-7a5c-f083-82a9-99ac373825ca",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:8080/rating-service/language/hindi",
+			"queryParams": [],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"events": [],
+			"auth": null,
+			"method": "GET",
+			"collectionId": "9cb47f95-b152-b6ff-0159-24310f1beaa9",
+			"data": null,
+			"dataMode": "params",
+			"name": "Get All Shows Rating Filtered By language",
+			"description": "",
+			"descriptionFormat": "html",
+			"time": 1514389812235,
+			"version": 2,
+			"responses": [],
+			"currentHelper": null,
+			"helperAttributes": null
+		},
+		{
+			"id": "d332ad66-e8b6-090d-b7f9-f515c68616cd",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:8080/rating-service/update-rating",
+			"queryParams": [],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"events": [],
+			"auth": null,
+			"method": "POST",
+			"collectionId": "9cb47f95-b152-b6ff-0159-24310f1beaa9",
+			"data": [],
+			"dataMode": "raw",
+			"name": "Update Rating of Show ",
+			"description": "",
+			"descriptionFormat": "html",
+			"time": 1514389778566,
+			"version": 2,
+			"responses": [],
+			"currentHelper": null,
+			"helperAttributes": null,
+			"rawModeData": "{\n\t\"showName\":\"Tiger Zinda Hai\",\n\t\"showType\":\"MOVIE\",\n\t\"rating\":\"2\"\n}"
+		},
+		{
+			"id": "d6637848-3fe0-c716-1550-2b7537299165",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:8080/rating-service/sort-the-shows?sort-by-average-rating=true",
+			"queryParams": [
+				{
+					"key": "sort-by-average-rating",
+					"value": "true",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				}
+			],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"events": [],
+			"auth": null,
+			"method": "GET",
+			"collectionId": "9cb47f95-b152-b6ff-0159-24310f1beaa9",
+			"data": null,
+			"dataMode": "params",
+			"name": "Get All Shows Sorted By Their Name",
+			"description": "",
+			"descriptionFormat": "html",
+			"time": 1514389850425,
+			"version": 2,
+			"responses": [],
+			"currentHelper": null,
+			"helperAttributes": null
+		},
+		{
+			"id": "ebc369ed-b6b3-0efb-eb51-25bb48179095",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:8080/rating-service/sort-the-shows?sort-by-average-rating=true",
+			"queryParams": [
+				{
+					"key": "sort-by-average-rating",
+					"value": "true",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				}
+			],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"events": [],
+			"auth": null,
+			"method": "GET",
+			"collectionId": "9cb47f95-b152-b6ff-0159-24310f1beaa9",
+			"data": null,
+			"dataMode": "params",
+			"name": "Get All Shows Sorted By Their Average Rating",
+			"description": "",
+			"descriptionFormat": "html",
+			"time": 1514389850425,
+			"version": 2,
+			"responses": [],
+			"currentHelper": null,
+			"helperAttributes": null
+		},
+		{
+			"id": "f2bd57bd-2bca-9088-7dc5-6561645684de",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:8080/rating-service/show-name/Bigg Boss",
+			"queryParams": [],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"events": [],
+			"auth": null,
+			"method": "GET",
+			"collectionId": "9cb47f95-b152-b6ff-0159-24310f1beaa9",
+			"data": null,
+			"dataMode": "params",
+			"name": "Get Rating Of Show By Name",
+			"description": "",
+			"descriptionFormat": "html",
+			"time": 1514389762508,
+			"version": 2,
+			"responses": [],
+			"currentHelper": null,
+			"helperAttributes": null
+		}
+	]
+}

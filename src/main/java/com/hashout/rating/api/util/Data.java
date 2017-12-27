@@ -23,9 +23,9 @@ public class Data {
         Map<String, MovieRatingDto> map = new HashMap<>();
         map.put("Tiger Zinda Hai", new MovieRatingDto("Tiger Zinda Hai", "Hindi",
                 "Action, Drama",
-                ShowType.MOVIE, 3.5f, 330000, "Salman Khan, Katrin Kaif",
+                ShowType.MOVIE, 3.0f, 3130230, "Salman Khan, Katrin Kaif",
                 null));
-        map.put("Start Wars", new MovieRatingDto("Start Wars", "English", "Action, Adventure",
+        map.put("Start Wars", new MovieRatingDto("Star Wars", "English", "Action, Adventure",
                 ShowType.MOVIE, 3.5f, 25356000, "Mark Hamil, Daisy Ridley",
                 "Imax"));
         return map;

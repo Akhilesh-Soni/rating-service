@@ -111,4 +111,25 @@ public class RatingRequestHandlerTest {
         objUnderTest.handleUpdateRequest(updateRatingDto);
     }
 
+
+    @Test
+    public void getAllShowsRatingsFilteredByLanguageShallReturnValidData() throws Exception {
+        AllShowsDto allShowsDto = objUnderTest.getAllShowsRatingsFilteredByLanguage("hindi");
+        MatcherAssert.assertThat(allShowsDto.getMovies().size(), Is.is(1));
+        MatcherAssert.assertThat(allShowsDto.getTvShows().size(), Is.is(2));
+    }
+
+    @Test
+    public void getAllShowSortedByNameShallReturnValidData() throws Exception {
+        AllShowsDto allShowsDto = objUnderTest.sortTheShowsByName();
+        MatcherAssert.assertThat(allShowsDto.getMovies().get(0).getName(), Is.is("Star Wars"));
+        MatcherAssert.assertThat(allShowsDto.getMovies().get(1).getName(), Is.is("Tiger Zinda Hai"));
+    }
+
+    @Test
+    public void getAllShowSortedByAverageRatingShallReturnValidData() throws Exception {
+        AllShowsDto allShowsDto = objUnderTest.sortTheShowsByAverageRating();
+        MatcherAssert.assertThat(allShowsDto.getMovies().get(0).getName(), Is.is("Tiger Zinda Hai"));
+        MatcherAssert.assertThat(allShowsDto.getMovies().get(1).getName(), Is.is( "Star Wars"));
+    }
 }

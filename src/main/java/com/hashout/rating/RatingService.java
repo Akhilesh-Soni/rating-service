@@ -9,10 +9,10 @@ import io.dropwizard.setup.Environment;
 /**
  * It is the main class of service, where all bootstrapping of service take place.
  **/
-public class RatingApplication extends Application<RatingConfiguration> {
+public class RatingService extends Application<RatingConfiguration> {
 
     public static void main(final String[] args) throws Exception {
-        new RatingApplication().run(args);
+        new RatingService().run(args);
     }
 
 

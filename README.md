@@ -1,6 +1,9 @@
-# RATING SERIVCE
+# RATING SERVICE
 
-How to start the api application
+An​ application which allows ​users​ to rate movies, Tv​ shows etc. Also​ allows​ to​ see overall rating​ from​ other users.
+It exposes a REST interface which accepts HTTP requests from web client like Postman or Advance Rest Client.
+
+How to start the rating service
 ---
 
 1. Run `mvn clean install` to build your application

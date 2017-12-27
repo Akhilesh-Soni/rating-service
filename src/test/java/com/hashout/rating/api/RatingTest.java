@@ -13,6 +13,7 @@ import org.mockito.Mockito;
 import javax.ws.rs.NotFoundException;
 import javax.ws.rs.core.Response;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.InvalidPropertiesFormatException;
 import java.util.Map;
 
@@ -133,5 +134,31 @@ public class RatingTest {
         Mockito.doThrow(InvalidPropertiesFormatException.class).when(handler).handleUpdateRequest(updateRatingDto);
         Response response = objUnderTest.updateRating(updateRatingDto);
         MatcherAssert.assertThat(response.getStatus(), Is.is(HttpStatus.UNPROCESSABLE_ENTITY_422));
+    }
+
+    @Test
+    public void getAllShowsFilteredByLanguage() throws Exception {
+        allShowsDto = new AllShowsDto(Collections.singletonList(movieRatingDtoMap.get("Tiger Zinda Hai")),
+                Collections.singletonList(tvShowRatingDtoMap.get("Bigg Boss")));
+        Mockito.when(handler.getAllShowsRatingsFilteredByLanguage("hindi")).thenReturn(allShowsDto);
+        Response response = objUnderTest.getShowsFilteredByLanguage("hindi");
+        AllShowsDto responseEntity = (AllShowsDto) response.getEntity();
+        MatcherAssert.assertThat(response.getStatus(), Is.is(Response.Status.OK.getStatusCode()));
+        MatcherAssert.assertThat(responseEntity.getMovies().size(), Is.is(1));
+        MatcherAssert.assertThat(responseEntity.getTvShows().size(), Is.is(1));
+    }
+
+    @Test
+    public void getAllShowSortedByName() throws Exception {
+        Response response = objUnderTest.getShowsInSortedManner(true, false);
+        Mockito.verify(handler, Mockito.times(1)).sortTheShowsByName();
+        MatcherAssert.assertThat(response.getStatus(), Is.is(Response.Status.OK.getStatusCode()));
+    }
+
+    @Test
+    public void getAllShowSortedByAverageRating() throws Exception {
+        Response response = objUnderTest.getShowsInSortedManner(false, true);
+        Mockito.verify(handler, Mockito.times(1)).sortTheShowsByAverageRating();
+        MatcherAssert.assertThat(response.getStatus(), Is.is(Response.Status.OK.getStatusCode()));
     }
 }

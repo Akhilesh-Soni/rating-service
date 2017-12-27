@@ -17,10 +17,9 @@ import java.util.Collections;
 import java.util.InvalidPropertiesFormatException;
 import java.util.Map;
 
+public class RatingResourceTest {
 
-public class RatingTest {
-
-    private Rating objUnderTest;
+    private RatingResource objUnderTest;
     private AllShowsDto allShowsDto;
     private Map<String, MovieRatingDto> movieRatingDtoMap;
     private Map<String, TvShowRatingDto> tvShowRatingDtoMap;
@@ -33,7 +32,7 @@ public class RatingTest {
         ArrayList<MovieRatingDto> moviesRatingDtos = new ArrayList<>();
         ArrayList<TvShowRatingDto> tvShowRatingDtos = new ArrayList<>();
 
-        objUnderTest = new Rating(handler);
+        objUnderTest = new RatingResource(handler);
         movieRatingDtoMap = ShowsData.intializeDataForMovies();
         tvShowRatingDtoMap = ShowsData.intializeDataForTvShow();
 

@@ -28,7 +28,7 @@ public class ShowsData {
                 "Action, Drama",
                 ShowType.MOVIE, 3.0f, 3130230, "Salman Khan, Katrin Kaif",
                 null));
-        map.put("Start Wars", new MovieRatingDto("Star Wars", "English", "Action, Adventure",
+        map.put("Star Wars", new MovieRatingDto("Star Wars", "English", "Action, Adventure",
                 ShowType.MOVIE, 3.5f, 25356000, "Mark Hamil, Daisy Ridley",
                 "Imax"));
         return map;

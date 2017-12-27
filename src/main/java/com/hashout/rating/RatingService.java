@@ -1,7 +1,7 @@
 package com.hashout.rating;
 
-import com.hashout.rating.api.Rating;
 import com.hashout.rating.api.RatingRequestHandler;
+import com.hashout.rating.api.RatingResource;
 import io.dropwizard.Application;
 import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
@@ -25,7 +25,7 @@ public class RatingService extends Application<RatingConfiguration> {
     public void run(final RatingConfiguration configuration,
                     final Environment environment) {
         // TODO: implement application
-        environment.jersey().register(new Rating(new RatingRequestHandler()));
+        environment.jersey().register(new RatingResource(new RatingRequestHandler()));
     }
 
 }

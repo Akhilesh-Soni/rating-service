@@ -4,6 +4,8 @@ import com.hashout.rating.api.dtos.*;
 import com.hashout.rating.api.util.ShowsData;
 import com.hashout.rating.api.util.SortByAverageRating;
 import com.hashout.rating.api.util.SortByName;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.ws.rs.NotFoundException;
 import javax.ws.rs.core.Response;
@@ -19,6 +21,8 @@ import java.util.stream.Collectors;
  * or connect with db(ShowsData class is acting as db) and fetch output.
  **/
 public class RatingRequestHandler {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(RatingRequestHandler.class.getCanonicalName());
 
     private final Map<String, MovieRatingDto> movies;
     private final Map<String, TvShowRatingDto> tvShows;
@@ -50,6 +54,7 @@ public class RatingRequestHandler {
     private void validateRating(final String stringValue) throws InvalidPropertiesFormatException {
         int rating = Integer.parseInt(stringValue);
         if (rating < 1 || rating > 5) {
+            LOGGER.error("Rating must be between 1-5");
             throw new InvalidPropertiesFormatException("Rating must be between 1-5");
         }
     }
@@ -62,6 +67,7 @@ public class RatingRequestHandler {
             response = Response.status(Response.Status.OK).entity(tvShows.get(showName)).build();
         }
         if (response == null) {
+            LOGGER.error("Show with given name " + showName + " not found.");
             throw new NotFoundException("Show with given name " + showName + " not found.");
         }
         return response;

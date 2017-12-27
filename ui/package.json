@@ -1,0 +1,20 @@
+{
+  "name": "assignment",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "lite-server -c bs-config.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bower": "^1.8.2",
+    "connect-history-api-fallback": "^1.5.0",
+    "http-proxy-middleware": "^0.17.4"
+  },
+  "devDependencies": {
+    "lite-server": "^2.3.0"
+  }
+}

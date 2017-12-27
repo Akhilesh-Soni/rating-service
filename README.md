@@ -7,8 +7,17 @@ How to start the rating service
 ---
 
 1. Run `mvn clean install` to build your application
-1. Start application with `java -jar target/movie-rating-service-1.0.0-SNAPSHOT.jar server config.yml`
-1. To check that your application is running enter url `http://localhost:8080`
+2. Start application with `java -jar target/movie-rating-service-1.0.0-SNAPSHOT.jar server config.yml`
+3. To check that your application is running enter url `http://localhost:8080`
+
+How to run the ui(Start rating service first)
+---
+1. Inside rating-service folder open terminal.
+2. Run `cd ui` to switch to ui folder.
+3. Run `npm install` to install required packages.
+4. Run `bower install` to install dependencies.
+5. Run `npm run start` to run ui.
+
 
 How to create docker image and run it(Docker should be installed)
 ---

@@ -1,0 +1,88 @@
+<!doctype html>
+<html ng-app="AppModule">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width">
+        <link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="app/styles/style.css"> 
+    </head>
+    <body>
+        <div class="container" ng-controller="appController">
+            <h2>Show Rating</h2>
+            <div class="row">
+                <table class="table table-bordered">
+                    <thead>
+                        <td>Name</td>
+                        <td>Your Rating</td>
+                        <td>Type</td>
+                        <td>Average Rating</td>
+                        <td>Total Votes</td>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="show in shows.movies">
+                            <td>
+                                    <div>{{show.name}}</div>
+                                    <div>{{show.language}}: {{show.genre}}</div>
+                                    <div ng-if="show.cast">Cast: {{show.cast}}</div>
+                                    <div ng-if="show.host">Host: {{show.host}}</div>
+                                    <div ng-if="show.screen">Screen: {{show.screen}}</div>
+                            </td>
+                            <td>
+                                <select ng-model="show.rating">
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                </select>
+                                <button ng-click="updateRating(show)" ng-disabled="!show.rating">Rate</button>
+                            </td>
+                            <td>
+                                {{show.type}}
+                            </td>
+                            <td>
+                                {{show.averageRating}}    
+                            </td>
+                            <td>
+                                {{show.totalVotes}}       
+                            </td>
+                        </tr>
+                        <tr ng-repeat="show in shows.tvShows">
+                                <td>
+                                    <div>{{show.name}}</div>
+                                    <div>{{show.language}}: {{show.genre}}</div>
+                                    <div ng-if="show.cast">Cast: {{show.cast}}</div>
+                                    <div ng-if="show.host">Host: {{show.host}}</div>
+                                    <div ng-if="show.screen">Screen: {{show.screen}}</div>
+                                </td>
+                                <td>
+                                    <select ng-model="show.tvShows">
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                    </select>
+                                    <button ng-click="updateRating(show)" ng-disabled="!show.rating">Rate</button>
+                                </td>
+                                <td>
+                                    {{show.type}}
+                                </td>
+                                <td>
+                                    {{show.averageRating}}    
+                                </td>
+                                <td>
+                                    {{show.totalVotes}}       
+                                </td>
+                            </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <script src="bower_components/jquery/dist/jquery.js"></script>
+        <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+        <script src="bower_components/angular/angular.js"></script>
+        <script src="bower_components/angular-resource/angular-resource.js"></script>
+        <script src="app/app.js"></script>
+    </body>
+</html>

@@ -2,3 +2,5 @@ target/
 .idea/
 *.iml
 dependency-reduced-pom.xml
+ui/bower_components/
+ui/node_modules/

@@ -2,9 +2,10 @@ package com.hashout.rating.api.dtos;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import java.util.ArrayList;
-import java.util.List;
 
+/**
+ * It contains details of movie.
+ **/
 public class MovieRatingDto extends ShowRatingDto {
 
     private final String cast;

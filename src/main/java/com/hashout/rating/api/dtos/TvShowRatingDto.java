@@ -4,6 +4,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.List;
 
+/**
+ * It contains details of tv show.
+ **/
 public class TvShowRatingDto extends ShowRatingDto {
 
     private final String channel;

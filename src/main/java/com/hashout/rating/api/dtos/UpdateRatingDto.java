@@ -7,6 +7,9 @@ import org.hibernate.validator.constraints.NotBlank;
 
 import javax.annotation.Nonnull;
 
+/**
+ * It contains data update the rating of a show.
+ **/
 public class UpdateRatingDto {
 
     @NotBlank

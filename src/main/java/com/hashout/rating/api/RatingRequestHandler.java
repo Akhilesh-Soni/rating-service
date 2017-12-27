@@ -1,7 +1,7 @@
 package com.hashout.rating.api;
 
 import com.hashout.rating.api.dtos.*;
-import com.hashout.rating.api.util.Data;
+import com.hashout.rating.api.util.ShowsData;
 import com.hashout.rating.api.util.SortByAverageRating;
 import com.hashout.rating.api.util.SortByName;
 
@@ -14,14 +14,18 @@ import java.util.Map;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
+/**
+ * This class will use to do all backend operation like communicating with rest resource to return output.
+ * or connect with db(ShowsData class is acting as db) and fetch output.
+ **/
 public class RatingRequestHandler {
 
     private final Map<String, MovieRatingDto> movies;
     private final Map<String, TvShowRatingDto> tvShows;
 
     public RatingRequestHandler() {
-        movies = Data.intializeDataForMovies();
-        tvShows = Data.intializeDataForTvShow();
+        movies = ShowsData.intializeDataForMovies();
+        tvShows = ShowsData.intializeDataForTvShow();
     }
 
     public void handleUpdateRequest(final UpdateRatingDto updateRatingDto) throws InvalidPropertiesFormatException {

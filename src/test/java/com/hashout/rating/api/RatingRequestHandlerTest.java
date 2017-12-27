@@ -1,7 +1,7 @@
 package com.hashout.rating.api;
 
 import com.hashout.rating.api.dtos.*;
-import com.hashout.rating.api.util.Data;
+import com.hashout.rating.api.util.ShowsData;
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.core.Is;
 import org.junit.After;
@@ -26,8 +26,8 @@ public class RatingRequestHandlerTest {
         ArrayList<MovieRatingDto> moviesRatingDtos = new ArrayList<>();
         ArrayList<TvShowRatingDto> tvShowRatingDtos = new ArrayList<>();
 
-        movieRatingDtoMap = Data.intializeDataForMovies();
-        tvShowRatingDtoMap = Data.intializeDataForTvShow();
+        movieRatingDtoMap = ShowsData.intializeDataForMovies();
+        tvShowRatingDtoMap = ShowsData.intializeDataForTvShow();
 
 
         moviesRatingDtos.addAll(movieRatingDtoMap.values());

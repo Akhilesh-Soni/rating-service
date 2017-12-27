@@ -4,10 +4,9 @@ package com.hashout.rating.api.dtos;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-
+/**
+ * It contains common data of movie and tv show.
+ **/
 public class ShowRatingDto {
 
     private final String name;
@@ -27,7 +26,7 @@ public class ShowRatingDto {
                          @JsonProperty("totalVotes") final int totalVotes) {
         this.name = name;
         this.language = language;
-        this.genre =  genre;
+        this.genre = genre;
         this.type = type;
         this.averageRating = averageRating;
         this.totalVotes = totalVotes;

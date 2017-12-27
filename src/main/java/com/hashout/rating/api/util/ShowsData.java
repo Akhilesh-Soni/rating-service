@@ -7,7 +7,10 @@ import com.hashout.rating.api.dtos.TvShowRatingDto;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Data {
+/**
+ * It contains static data of movies and tv shows.
+ **/
+public class ShowsData {
 
 
     public static Map<String, TvShowRatingDto> intializeDataForTvShow() {

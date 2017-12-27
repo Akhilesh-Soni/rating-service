@@ -7,6 +7,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+/**
+* It contains list of movies and tv shows.
+ **/
 public class AllShowsDto {
 
     private final List<MovieRatingDto> movies;
